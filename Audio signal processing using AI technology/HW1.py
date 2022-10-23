@@ -1,4 +1,3 @@
-# 同學作業區
 import pandas as pd
 import numpy as np
 
@@ -8,7 +7,7 @@ class AudioInfo:
     # 若多筆則以 list, pandas dataframe, or numpy array 資料建立
     def __init__(self, inputdata):
         self.data = inputdata
-        # 需要加以整理？
+        
     # part - 1 : mel scale; 請以 list, pandas dataframe,  or numpy array 回傳零、一、或多筆結果 (25%)
     #            如果遇到 NAN，請過濾不使用
     def GetF0Mel(self):
@@ -40,11 +39,12 @@ class AudioInfo:
                 MelLIST.append(Mel_3 )
             elif Hz_3 == str("N/A"):
                 pass
-        # 如何計算呢？
+    
         return MelLIST
+    
     # part - 2 : 計算有語音的時間（in second） (25%)
     def GetAudioPeriod(self):
-        # 如何計算呢？
+   
         GetPeriodLIST =[]
         n = -1
         while n >=-1 and n<=22:
@@ -55,8 +55,8 @@ class AudioInfo:
         min_sec = min(GetPeriodLIST)
         GetPeriod = max_sec - min_sec
         return GetPeriod
+    
     # part - 3 : 查詢並取得某個時間點內的資料；請以 list, pandas dataframe,  or numpy array 回傳零、一、或多筆結果 (25%)
-
     def GetData(self, start_sec, stop_sec):
         CTimeLIST = []
         n = -1
@@ -64,10 +64,11 @@ class AudioInfo:
             n = n+1
             if self.data["Time_sec"][n] >= start_sec and self.data["Time_sec"][n] <= stop_sec:
                 CTimeLIST.append(self.data.iloc[n])
-        # 如何計算呢？
+   
         return CTimeLIST
 
     # part - 4 : 取得最大、最小音量；回傳請以 tuple 形式 (25%)
+    
     def GetMaxMinVolume(self):
         DBLIST=[]
         for db in self.data["Intensity_dB"]:
@@ -75,8 +76,9 @@ class AudioInfo:
                 DBLIST.append(db)
         max_db = max(DBLIST)
         min_db = min(DBLIST)
-        # 如何計算呢？
+     
         return max_db, min_db
+    
     # part - 5 : 取得平均值；藉由輸入標籤，決定回傳哪個平均值 (50%)
     # 輸入標籤：'F0', 'F1', 'F2', 'F3', 'Volume'
     def GetAvg(self, col_label):
@@ -85,13 +87,13 @@ class AudioInfo:
             for a in self.data["F0_Hz"]:
                 F_0LIST.append(a)
             average_value = np.mean(F_0LIST)
-            # 如何計算呢？
+       
         elif col_label == 'F1':
             F_1LIST=[]
             for a in self.data["F1_Hz"]:
                 F_1LIST.append(a)
             average_value = np.mean(F_1LIST)
-            # 如何計算呢？
+   
         elif col_label == "F2":
             F_2LIST=[]
             for a in self.data["F2_Hz"]:
@@ -105,6 +107,7 @@ class AudioInfo:
             average_value = np.mean(F_3LIST)
 
         return average_value
+    
     # part - 6 : 取得變異數；藉由輸入標籤，決定回傳哪個變異數 (50%)
     # 輸入標籤：'F0', 'F1', 'F2', 'F3', 'Volume'
     def GetVar(self, col_label):
@@ -113,7 +116,7 @@ class AudioInfo:
             for a in self.data["F0_Hz"]:
                 F_0LIST.append(a)
             variance_value = np.var(F_0LIST)
-            # 如何計算呢？
+      
         elif col_label == 'F1':
             F_1LIST=[]
             for a in self.data["F1_Hz"]:
@@ -131,6 +134,6 @@ class AudioInfo:
             for a in self.data["F3_Hz"]:
                 F_3LIST.append(a)
             variance_value = np.var(F_3LIST)
-            # 如何計算呢？
+  
 
         return variance_value
