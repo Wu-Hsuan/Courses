@@ -11,12 +11,4 @@ def calculate_salary_cap(existing_salaries, target_payroll):
         if difference <= 0:
             return salary
         difference -= salary
-    return existing_salaries_sorted[-1]def calculate_salary_cap(existing_salaries, target_payroll):
-    total_salary = sum(existing_salaries)
-    difference = total_salary - target_payroll
-    existing_salaries_sorted = sorted(existing_salaries, reverse=True)
-    for salary in existing_salaries_sorted:
-        if difference <= 0:
-            return salary
-        difference -= salary
     return existing_salaries_sorted[-1]
