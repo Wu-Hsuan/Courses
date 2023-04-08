@@ -1,0 +1,22 @@
+#Given existing salaries and the target payroll. Design an algorithm for
+computing the salary cap and return it; For example, if there were five employees with salaries last year were $90, $30, $100, $40, and $20, and the
+target payroll this year is $210, then 60 is a suitable salary cap, since 60 + 30
++ 60 + 40 + 20 = 210.
+
+def calculate_salary_cap(existing_salaries, target_payroll):
+    total_salary = sum(existing_salaries)
+    difference = total_salary - target_payroll
+    existing_salaries_sorted = sorted(existing_salaries, reverse=True)
+    for salary in existing_salaries_sorted:
+        if difference <= 0:
+            return salary
+        difference -= salary
+    return existing_salaries_sorted[-1]def calculate_salary_cap(existing_salaries, target_payroll):
+    total_salary = sum(existing_salaries)
+    difference = total_salary - target_payroll
+    existing_salaries_sorted = sorted(existing_salaries, reverse=True)
+    for salary in existing_salaries_sorted:
+        if difference <= 0:
+            return salary
+        difference -= salary
+    return existing_salaries_sorted[-1]
